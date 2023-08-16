@@ -2,6 +2,7 @@ import compression from "compression";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
+import "dotenv/config";
 
 export const app = express();
 

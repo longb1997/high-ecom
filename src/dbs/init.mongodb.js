@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { envConfig } from "../configs/config.mongodb.js";
 
-const connectString = "";
+const connectString = `mongodb://${envConfig.db.host}:${envConfig.db.port}/${envConfig.db.name}`;
 
 class Database {
   constructor() {

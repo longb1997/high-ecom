@@ -1,6 +1,7 @@
 import { app } from "./src/app.js";
+import { envConfig } from "./src/configs/config.mongodb.js";
 
-const PORT = 3005;
+const PORT = envConfig.app.port || 3005;
 
 const server = app.listen(PORT, () => {
   console.log("WSV eCommerge start with port: ", PORT);
