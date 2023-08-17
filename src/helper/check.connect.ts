@@ -3,13 +3,15 @@ import os from "os";
 import process from "process";
 const _SECONDS = 5000;
 export const countConnect = () => {
-  const numConnection = mongoose.connection.length;
+  //@ts-ignore
+  const numConnection: any = mongoose.connection?.length;
   console.log("Number of connection mongodb", numConnection);
 };
 
 export const checkOverload = () => {
   setInterval(() => {
-    const numConnection = mongoose.connection.length;
+  //@ts-ignore
+    const numConnection: any = mongoose.connection?.length;
     const numCores = os.cpus().length;
     const memoryUse = process.memoryUsage().rss;
 

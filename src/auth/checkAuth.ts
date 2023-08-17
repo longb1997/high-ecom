@@ -1,11 +1,11 @@
-import ApiService from "../services/apiKey.service.js";
+import ApiService from "../services/apiKey.service";
 
 const HEADER = {
   API_KEY: "x-api-key",
   AUTHORIZATION: "Authorization",
 };
 
-export const apiKey = async (req, res, next) => {
+export const apiKey = async (req: any, res: any, next: any) => {
   try {
     const key = req.headers[HEADER.API_KEY]?.toString();
 
@@ -30,8 +30,8 @@ export const apiKey = async (req, res, next) => {
   }
 };
 
-export const permissions = (permission) => {
-  return (req, res, next) => {
+export const permissions = (permission: any) => {
+  return (req: any, res: any, next: any) => {
     if (!req.objKey.permissions) {
       return res.status(403).json({
         message: "Permission Denied",

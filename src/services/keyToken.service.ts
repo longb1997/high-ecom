@@ -1,7 +1,11 @@
-import { keyTokenSchema } from "../models/keytoken.model.js";
+import { keyTokenSchema } from "../models/keyToken.model";
 
 class KeyTokenService {
-  static createKeyToken = async ({ userId, publicKey, privateKey }) => {
+  static createKeyToken = async ({
+    userId,
+    publicKey,
+    privateKey
+  }: any) => {
     try {
       // const publicKeyString = publicKey.toString();
 
@@ -13,7 +17,7 @@ class KeyTokenService {
       });
 
       return tokens ? tokens.publicKey : null;
-    } catch (error) {
+    } catch (error: any) {
       return {
         code: "xxx",
         message: error.message,

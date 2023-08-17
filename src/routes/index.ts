@@ -1,7 +1,7 @@
-"use strict";
 import express from "express";
-import accessRouter from "./access/index.js";
-import { apiKey, permissions } from "../auth/checkAuth.js";
+import accessRouter from "./access";
+import { apiKey, permissions } from "../auth/checkAuth";
+
 const router = express.Router();
 
 // Check apiKey

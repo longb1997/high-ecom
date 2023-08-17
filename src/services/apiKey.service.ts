@@ -1,7 +1,7 @@
-import { apiKeySchema } from "../models/apiKey.model.js";
+import { apiKeySchema } from "../models/apiKey.model";
 import crypto from "crypto";
 class ApiService {
-  static findById = async (key) => {
+  static findById = async (key: any) => {
     // const newKey = await apiKeySchema.create({
     //   key: crypto.randomBytes(64).toString("hex"),
     //   permissions: ["0000"],

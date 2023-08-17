@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
-import { envConfig } from "../configs/config.mongodb.js";
+import { envConfig } from "../configs/config.mongodb";
 
 const connectString = `mongodb://${envConfig.db.host}:${envConfig.db.port}/${envConfig.db.name}`;
+
+type IDatabase = {
+  instance?: any
+}
 
 class Database {
   constructor() {
@@ -27,10 +31,12 @@ class Database {
   }
 
   static getInstance() {
+    //@ts-ignore
     if (!Database.instance) {
+    //@ts-ignore
       Database.instance = new Database();
     }
-
+    //@ts-ignore
     return Database.instance;
   }
 }

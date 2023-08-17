@@ -1,9 +1,9 @@
-import { shopSchema } from "../models/shop.model.js";
+import { shopSchema } from "../models/shop.model";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
-import KeyTokenService from "./keyToken.service.js";
-import { createTokenPair } from "../auth/authUtils.js";
-import { getInfoData } from "../utils/index.js";
+import KeyTokenService from "./keyToken.service";
+import { createTokenPair } from "../auth/authUtils";
+import { getInfoData } from "../utils";
 
 const RoleShop = {
   SHOP: "SHOP",
@@ -13,7 +13,11 @@ const RoleShop = {
 };
 
 class AccessService {
-  static signUp = async ({ name, email, password }) => {
+  static signUp = async ({
+    name,
+    email,
+    password
+  }: any) => {
     try {
       //check email exist
       const holderShop = await shopSchema.findOne({ email }).lean();
@@ -93,7 +97,7 @@ class AccessService {
         code: 200,
         metadata: null,
       };
-    } catch (error) {
+    } catch (error: any) {
       return {
         code: "xxx",
         message: error.message,

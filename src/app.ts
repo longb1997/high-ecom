@@ -3,7 +3,8 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import "dotenv/config";
-import router from "./routes/index.js";
+import router from "./routes";
+
 export const app = express();
 
 //init middleware
@@ -17,7 +18,7 @@ app.use(
   })
 );
 //init db
-import("./dbs/init.mongodb.js");
+import("./dbs/init.mongodb");
 
 //init router
 app.use("/", router);

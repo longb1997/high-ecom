@@ -21,6 +21,6 @@ const pro = {
 };
 
 const env = process.env.NODE_ENV || "dev";
-const config = { dev, pro };
+const config = { dev, pro } as any;
 
 export const envConfig = config[env];
