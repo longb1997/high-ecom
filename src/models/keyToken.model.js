@@ -14,6 +14,10 @@ const schema = new Schema(
       type: String,
       required: true,
     },
+    privateKey: {
+      type: String,
+      required: true,
+    },
     refreshToken: {
       type: Schema.Types.Array,
       default: [],

@@ -33,22 +33,28 @@ class AccessService {
 
       if (newShop) {
         // Created privateKey and publicKey
-        const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
-          modulusLength: 4096,
-          publicKeyEncoding: {
-            type: "pkcs1",
-            format: "pem",
-          },
-          privateKeyEncoding: {
-            type: "pkcs1",
-            format: "pem",
-          },
-        });
+        // const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
+        //   modulusLength: 4096,
+        //   publicKeyEncoding: {
+        //     type: "pkcs1",
+        //     format: "pem",
+        //   },
+        //   privateKeyEncoding: {
+        //     type: "pkcs1",
+        //     format: "pem",
+        //   },
+        // });
+
+        const privateKey = crypto.randomBytes(64).toString("hex");
+        const publicKey = crypto.randomBytes(64).toString("hex");
+
+        console.log({ privateKey, publicKey });
 
         //save publicKey to database
         const publicKeyString = await KeyTokenService.createKeyToken({
           userId: newShop._id,
           publicKey,
+          privateKey,
         });
 
         if (!publicKeyString) {
@@ -59,15 +65,16 @@ class AccessService {
         }
 
         //convert to rsa publicKey from publicKeyString get from database
-        const publicKeyObject = crypto.createPublicKey(publicKeyString);
-        console.log("publicKeyObject::", publicKeyObject);
+        // const publicKeyObject = crypto.createPublicKey(publicKeyString);
+        // console.log("publicKeyObject::", publicKeyObject);
 
         //using privateKey and publicKey to create JWT token
         const tokens = await createTokenPair(
           { userId: newShop._id, email },
-          publicKeyObject,
+          publicKey,
           privateKey
         );
+
         console.log("token::", tokens);
 
         return {
