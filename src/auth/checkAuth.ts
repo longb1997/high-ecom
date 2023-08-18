@@ -1,8 +1,10 @@
-import ApiService from "../services/apiKey.service";
+import { AuthFailureError } from '@server/core';
+import { apiService } from '@server/services';
+import { NextFunction, Request, Response } from 'express';
 
 const HEADER = {
-  API_KEY: "x-api-key",
-  AUTHORIZATION: "Authorization",
+  API_KEY: 'x-api-key',
+  AUTHORIZATION: 'Authorization',
 };
 
 export const apiKey = async (req: any, res: any, next: any) => {
@@ -11,16 +13,17 @@ export const apiKey = async (req: any, res: any, next: any) => {
 
     if (!key) {
       return res.status(403).json({
-        message: "Forbidden Error",
+        message: 'Forbidden Error',
       });
+      throw new AuthFailureError('Forbidden Error');
     }
 
     //Check objKey
-    const objKey = await ApiService.findById(key);
+    const objKey = await apiService.findById(key);
 
     if (!objKey) {
       return res.status(403).json({
-        message: "Forbidden Error",
+        message: 'Forbidden Error',
       });
     }
     req.objKey = objKey;
@@ -34,17 +37,17 @@ export const permissions = (permission: any) => {
   return (req: any, res: any, next: any) => {
     if (!req.objKey.permissions) {
       return res.status(403).json({
-        message: "Permission Denied",
+        message: 'Permission Denied',
       });
     }
 
-    console.log("permission::", req.objKey?.permissions);
+    console.log('permission::', req.objKey?.permissions);
 
     const validPermission = req.objKey.permissions.includes(permission);
 
     if (!validPermission) {
       return res.status(403).json({
-        message: "Permission Denied",
+        message: 'Permission Denied',
       });
     }
 

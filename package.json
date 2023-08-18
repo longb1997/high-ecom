@@ -17,7 +17,10 @@
     "@routes/*": "src/routes/*",
     "@services/*": "src/services/*",
     "@utils/*": "src/utils/*",
-    "@auth/*": "src/auth/*"
+    "@auth/*": "src/auth/*",
+    "@models/*": "src/models/*",
+    "@types/*": "src/types/*",
+    "@core/*": "src/core/*"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",

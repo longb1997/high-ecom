@@ -1,5 +1,5 @@
-import { apiKeySchema } from "../models/apiKey.model";
-import crypto from "crypto";
+import { apiKeySchema } from '../models/apiKey.model';
+import crypto from 'crypto';
 class ApiService {
   static findById = async (key: any) => {
     // const newKey = await apiKeySchema.create({
@@ -11,4 +11,4 @@ class ApiService {
     return objKey;
   };
 }
-export default ApiService;
+export const apiService = ApiService;

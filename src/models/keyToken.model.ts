@@ -1,14 +1,14 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
-const DOCUMENT_NAME = "Key";
-const COLLECTION_NAME = "Keys";
+const DOCUMENT_NAME = 'Key';
+const COLLECTION_NAME = 'Keys';
 // Declare the Schema of the Mongo model
 const schema = new Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "Shop",
+      ref: 'Shop',
     },
     publicKey: {
       type: String,
@@ -19,6 +19,10 @@ const schema = new Schema(
       required: true,
     },
     refreshToken: {
+      type: String,
+      require: true,
+    },
+    refreshTokenUsed: {
       type: Schema.Types.Array,
       default: [],
     },
@@ -26,7 +30,7 @@ const schema = new Schema(
   {
     timestamps: true,
     collection: COLLECTION_NAME,
-  }
+  },
 );
 
 //Export the model

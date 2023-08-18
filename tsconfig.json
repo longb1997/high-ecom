@@ -13,6 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "typeRoots" : ["./src/types", "./node_modules/@types"],
     "paths": {
       "@server/*": ["./src/*"],
       "@configs/*": ["./src/configs/*"],
@@ -22,6 +23,9 @@
       "@services/*": ["./src/services/*"],
       "@utils/*": ["./src/utils/*"],
       "@auth/*": ["./src/auth/*"],
+      "@models/*": ["./src/models/*"],
+      "@types/*": ["./src/types/*"],
+      "@core/*": ["./src/core/*"],
       "@tests/*": ["__tests__/*"]
     }
   },
