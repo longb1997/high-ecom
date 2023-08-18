@@ -34,4 +34,10 @@ class NotFoundError extends ErrorResponse {
   }
 }
 
-export { ConflictRequestError, BadRequestError, AuthFailureError, NotFoundError };
+class ForBiddenError extends ErrorResponse {
+  constructor(message = ReasonPhrases.FORBIDDEN, status = StatusCodes.FORBIDDEN) {
+    super(message, status);
+  }
+}
+
+export { ConflictRequestError, BadRequestError, AuthFailureError, NotFoundError, ForBiddenError };

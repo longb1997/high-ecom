@@ -69,3 +69,7 @@ export const authentication = asyncHandler(async (req: Request, res: Response, n
     throw error;
   }
 });
+
+export const verifyJWT = async (token: any, keySecret: any) => {
+  return JWT.verify(token, keySecret);
+};

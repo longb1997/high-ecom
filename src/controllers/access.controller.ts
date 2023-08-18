@@ -3,6 +3,12 @@ import { accessService } from '@server/services';
 import { Z_OK } from 'zlib';
 
 class AccessController {
+  handleRefreshToken = async (req: any, res: any, next: any) => {
+    return new SuccessResponse({
+      metadata: await accessService.handleRefreshToken(req.body.refreshToken),
+    }).send(res);
+  };
+
   login = async (req: any, res: any, next: any) => {
     return new SuccessResponse({
       metadata: await accessService.login(req.body),

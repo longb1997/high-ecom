@@ -16,4 +16,7 @@ accessRouter.use(authentication);
 //logout
 accessRouter.post('/shop/logout', asyncHandler(accessController.logout));
 
+//handle refresh token
+accessRouter.post('/shop/handleRefreshToken', asyncHandler(accessController.handleRefreshToken));
+
 export default accessRouter;
