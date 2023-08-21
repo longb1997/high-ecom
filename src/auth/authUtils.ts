@@ -106,7 +106,19 @@ export const authenticationV2 = asyncHandler(async (req: Request, res: Response,
     }
   }
 
+  const accessToken = req.headers[HEADER.AUTHORIZATION] as string;
+  if (!accessToken) throw new AuthFailureError('Invalid Request');
+
   //4 - check user in db
+  try {
+    const decodeUser = JWT.verify(accessToken, keyStore.publicKey) as any;
+    if (userId !== decodeUser.userId) throw new AuthFailureError('Invalid User');
+    req.keyStore = keyStore;
+    req.user = decodeUser;
+    return next();
+  } catch (error) {
+    throw error;
+  }
 });
 
 export const verifyJWT = async (token: any, keySecret: any) => {
