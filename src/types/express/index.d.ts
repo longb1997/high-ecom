@@ -5,6 +5,8 @@ declare global {
   namespace Express {
     interface Request {
       keyStore?: Jwt.Secret;
+      user?: any;
+      refreshToken?: string | string[];
     }
   }
 }

@@ -13,7 +13,7 @@ class KeyTokenService {
   };
 
   static findByUserId = async (userId: any) => {
-    return await keyTokenSchema.findOne({ user: new Types.ObjectId(userId) }).lean();
+    return await keyTokenSchema.findOne({ user: new Types.ObjectId(userId) });
   };
 
   static deleteKeyById = async (id: any) => {

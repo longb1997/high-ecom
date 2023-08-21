@@ -4,8 +4,19 @@ import { Z_OK } from 'zlib';
 
 class AccessController {
   handleRefreshToken = async (req: any, res: any, next: any) => {
+    // return new SuccessResponse({
+    //   metadata: await accessService.handleRefreshToken(req.body.refreshToken),
+    // }).send(res);
+
+    //V2 fixed, no need accessToken
+
     return new SuccessResponse({
-      metadata: await accessService.handleRefreshToken(req.body.refreshToken),
+      message: 'Get token success',
+      metadata: await accessService.handleRefreshTokenV2({
+        refreshToken: req.refreshToken,
+        user: req.user,
+        keyStore: req.keyStore,
+      }),
     }).send(res);
   };
 

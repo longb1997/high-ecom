@@ -1,4 +1,4 @@
-import { authentication } from '@server/auth';
+import { authenticationV2 } from '@server/auth';
 import { accessController } from '@server/controllers';
 import { asyncHandler } from '@server/helper';
 import * as express from 'express';
@@ -11,7 +11,7 @@ accessRouter.post('/shop/signup', asyncHandler(accessController.signup));
 accessRouter.post('/shop/login', asyncHandler(accessController.login));
 
 // authentication //
-accessRouter.use(authentication);
+accessRouter.use(authenticationV2);
 
 //logout
 accessRouter.post('/shop/logout', asyncHandler(accessController.logout));
